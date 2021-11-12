@@ -7,7 +7,7 @@ function Header() {
       <h1>Cheesus Crust</h1>
       <p>The power of Crust compels you</p>
       <Link to='/'>
-        <button>Home</button>
+        <button id='order-pizza'>Home</button>
       </Link>
       <Link to='/pizza'>
         <button>Order</button>
