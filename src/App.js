@@ -45,11 +45,12 @@ function App() {
   };
 
   const inputChange = (name, value) => {
-    validate(name, value);
+    // validate(name, value);
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const formSubmit = () => {
+  const formSubmit = (evt) => {
+    evt.preventDefault();
     const newOrder = {
       customerName: formValues.customerName.trim(),
       pizzaSize: formValues.pizzaSize,
@@ -88,23 +89,23 @@ function App() {
   return (
     <div className='container'>
       <Header />
-      <Switch>
-        <Route exact path='/'>
-          <Home />
-        </Route>
-        <Route path='/pizza'>
-          <OrderForm
-            formValues={formValues}
-            inputChange={inputChange}
-            formSubmit={formSubmit}
-            disabled={disabled}
-            formErrors={formErrors}
-          />
-        </Route>
-        <Route path='/order/confirmation'>
-          <Confirmation details={confirmation} />
-        </Route>
-      </Switch>
+      {/* <Switch> */}
+      <Route exact path='/'>
+        <Home />
+      </Route>
+      <Route path='/pizza'>
+        <OrderForm
+          formValues={formValues}
+          inputChange={inputChange}
+          formSubmit={formSubmit}
+          disabled={disabled}
+          formErrors={formErrors}
+        />
+      </Route>
+      <Route path='/order/confirmation'>
+        <Confirmation details={confirmation} />
+      </Route>
+      {/* </Switch> */}
     </div>
   );
 }
