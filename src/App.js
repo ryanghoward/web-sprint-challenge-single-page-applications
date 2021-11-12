@@ -33,8 +33,10 @@ const initialDisabled = true;
 function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-  const [confirmation, setConfirmation] = useState(initialFormValues);
+  const [confirmation, setConfirmation] = useState({});
   const [disabled, setDisabled] = useState(initialDisabled);
+
+  console.log(confirmation);
 
   const validate = (name, value) => {
     yup
@@ -50,7 +52,7 @@ function App() {
   };
 
   const formSubmit = (evt) => {
-    evt.preventDefault();
+    // evt.preventDefault();
     const newOrder = {
       customerName: formValues.customerName.trim(),
       pizzaSize: formValues.pizzaSize,
@@ -69,16 +71,20 @@ function App() {
   };
 
   const setNewOrder = (newOrder) => {
-    setConfirmation(newOrder);
+    // setConfirmation(newOrder);
     // setFormValues(initialFormValues);
     axios
       .post(`https://reqres.in/api/orders`, newOrder)
       .then((res) => {
         console.log(res.data);
-        setFormValues(res.data);
+        setConfirmation(newOrder);
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        setFormValues(initialFormValues);
+        window.location.href = "/order/confirmation";
       });
   };
 
@@ -89,23 +95,24 @@ function App() {
   return (
     <div className='container'>
       <Header />
-      {/* <Switch> */}
-      <Route exact path='/'>
-        <Home />
-      </Route>
-      <Route path='/pizza'>
-        <OrderForm
-          formValues={formValues}
-          inputChange={inputChange}
-          formSubmit={formSubmit}
-          disabled={disabled}
-          formErrors={formErrors}
-        />
-      </Route>
-      <Route path='/order/confirmation'>
-        <Confirmation details={confirmation} />
-      </Route>
-      {/* </Switch> */}
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route path='/pizza'>
+          <OrderForm
+            formValues={formValues}
+            inputChange={inputChange}
+            formSubmit={formSubmit}
+            disabled={disabled}
+            formErrors={formErrors}
+            confirmation={confirmation}
+          />
+        </Route>
+        <Route>
+          <Confirmation details={confirmation} />
+        </Route>
+      </Switch>
     </div>
   );
 }

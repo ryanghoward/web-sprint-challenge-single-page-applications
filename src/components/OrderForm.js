@@ -1,11 +1,16 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import pizza from "../Assets/Pizza.jpg";
 
 const OrderForm = (props) => {
-  const { formValues, inputChange, formSubmit, formErrors, formDisabled } =
-    props;
-  const history = useHistory();
+  const {
+    formValues,
+    inputChange,
+    formSubmit,
+    formErrors,
+    formDisabled,
+    confirmation,
+  } = props;
 
   const onChange = (event) => {
     const { customerName, value, checked, type } = event.target;
@@ -14,18 +19,21 @@ const OrderForm = (props) => {
     inputChange(customerName, valueToUse);
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onClick = () => {
+    console.log(confirmation);
+  };
+
+  const onSubmit = (evt) => {
+    evt.preventDefault();
     formSubmit();
-    history.push("/order/confirmation");
   };
 
   return (
-    <form id='pizza-form' className='form-container' onSubmit={formSubmit}>
+    <form id='pizza-form' className='form-container' onSubmit={onSubmit}>
       <div className='form-group submit'>
         <img className='home-image' src={pizza} alt='Pizza' />
         <h2>Whatchyu want on yo Pizza?</h2>
-        <button id='order-button' disabled={formDisabled}>
+        <button onClick={onClick} id='order-button' disabled={formDisabled}>
           Submit
         </button>
         <div className='errors'>
@@ -123,14 +131,6 @@ const OrderForm = (props) => {
             />
           </label>
         </div>
-        {/* <div className='errors'>
-          <div>{formErrors.name}</div>
-        </div>
-        <label>
-          <button id='order-button' type='submit' name='submitButton'>
-            Add to Order
-          </button>
-        </label> */}
       </div>
     </form>
   );
