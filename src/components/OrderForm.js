@@ -31,9 +31,9 @@ const OrderForm = (props) => {
     <form id='pizza-form' className='form-container' onSubmit={onSubmit}>
       <div className='form-group submit'>
         <img className='home-image' src={pizza} alt='Pizza' />
-        <h2>Whatchyu want on yo Pizza?</h2>
+        <h2>Whatchyu want on yo Pizza bruh?</h2>
         <div className='errors'>
-          <div>{formErrors.customerName}</div>
+          <div>{formErrors.name}</div>
           <div>{formErrors.pizzaSize}</div>
         </div>
         <label>

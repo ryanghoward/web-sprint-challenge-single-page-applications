@@ -25,7 +25,7 @@ const initialFormValues = {
 };
 
 const initialFormErrors = {
-  customerName: "",
+  name: "",
   pizzaSize: "",
 };
 

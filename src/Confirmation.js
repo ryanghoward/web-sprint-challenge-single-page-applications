@@ -21,7 +21,7 @@ function Confirmation({ details }) {
             </ul>
           </div>
         )}
-        <p>Special Instructions: {details.other}</p>
+        <p>Special Instructions: {details.special}</p>
       </div>
     </div>
   );
