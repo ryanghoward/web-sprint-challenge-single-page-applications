@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import pizza from "./Assets/Pizza.jpg";
+import pizza from "../Assets/Pizza.jpg";
 
 function Home() {
   return (

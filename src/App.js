@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-import Home from "./Home";
+import Home from "./components/Home";
 
 const initialFormValues = {
   customerName: "",
@@ -26,15 +26,39 @@ const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
+  const [confirmation, setConfirmation] = useState(initialFormValues);
+
+  const setNewOrder = (newOrder) => {
+    setConfirmation(newOrder);
+    setFormValues(initialFormValues);
+  };
+
+  const formSubmit = () => {
+    const newOrder = {
+      customerName: formValues.customerName.trim(),
+      pizzaSize: formValues.pizzaSize,
+      toppings: [
+        "pepperoni",
+        "cheese",
+        "sausage",
+        "bacon",
+        "pineapple",
+        "onion",
+        "olives",
+      ].filter((topping) => !!formValues[topping]),
+      other: formValues.other.trim(),
+    };
+    setNewOrder(newOrder);
+  };
 
   return (
-    <>
+    <div className='container'>
+      <h1>Cheesus Crust</h1>
+      <p>The power of Crust compels you</p>
       <Route>
         <Home />
       </Route>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
-    </>
+    </div>
   );
 };
 export default App;
