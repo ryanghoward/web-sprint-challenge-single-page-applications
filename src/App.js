@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
+import axios from "axios";
 import * as yup from "yup";
 import formSchema from "./Directory/formSchema";
 import Confirmation from "./Confirmation";
@@ -9,7 +10,6 @@ import "./App.css";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import OrderForm from "./components/OrderForm";
-import axios from "axios";
 
 const initialFormValues = {
   customerName: "",
@@ -39,25 +39,22 @@ function App() {
 
   // console.log(confirmation);
 
-  const validation = (customerName, value) => {
+  const validate = (name, value) => {
     yup
-      .reach(formSchema, customerName)
+      .reach(formSchema, name)
       .validate(value)
-      .then(() => setFormErrors({ ...formErrors, [customerName]: "" }))
-      .catch((err) =>
-        setFormErrors({ ...formErrors, [customerName]: err.errors[0] })
-      );
+      .then(() => setFormErrors({ ...formErrors, [name]: "" }))
+      .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
   };
 
   const inputChange = (name, value) => {
-    // validate(name, value);
+    validate(name, value);
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const formSubmit = (evt) => {
-    // evt.preventDefault();
+  const formSubmit = (event) => {
     const newOrder = {
-      customerName: formValues.customerName.trim(),
+      name: formValues.customerName.trim(),
       pizzaSize: formValues.pizzaSize,
       toppings: [
         "pepperoni",
@@ -74,12 +71,10 @@ function App() {
   };
 
   const setNewOrder = (newOrder) => {
-    // setConfirmation(newOrder);
-    // setFormValues(initialFormValues);
     axios
-      .post(`https://reqres.in/api/orders`, newOrder)
+      .post(`https://reqres.in/api/orders`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setConfirmation(newOrder);
       })
       .catch((err) => {

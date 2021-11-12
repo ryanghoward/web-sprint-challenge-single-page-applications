@@ -32,9 +32,6 @@ const OrderForm = (props) => {
       <div className='form-group submit'>
         <img className='home-image' src={pizza} alt='Pizza' />
         <h2>Whatchyu want on yo Pizza?</h2>
-        <button onClick={onClick} id='order-button' disabled={formDisabled}>
-          Submit
-        </button>
         <div className='errors'>
           <div>{formErrors.customerName}</div>
           <div>{formErrors.pizzaSize}</div>
@@ -131,16 +128,13 @@ const OrderForm = (props) => {
           </label>
           <label>
             Special
-            <input
-              id='special-text'
-              type='text'
-              name='Special'
-              // onChange={onChange}
-              // value={formValues.olives}
-            />
+            <input id='special-text' type='text' name='Special' />
           </label>
         </div>
       </div>
+      <button onClick={onClick} id='order-button' disabled={formDisabled}>
+        Submit
+      </button>
     </form>
   );
 };

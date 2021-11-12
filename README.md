@@ -35,8 +35,16 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question.
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+
+   - The useRouteMatch hook is useful any time you're utilizing a Route solely to have access to its match data, such as when you're rendering a Route on its own outside of a Switch. It uses the precise, strict, and sensitive settings to match the URL just as a Route would.
+
 1. How would you explain form validation to someone who has never programmed before?
+
+   - A form validation test guarantees that the user enters the proper information. For example, a name, an actual email address, a phone number, and so on. If everything was done successfully, the form will either warn the user that they made a mistake or go on. For example, in order to be granted a Twitter account, you must provide a valid email address and phone number.
+
 1. In 1-2 sentences, define end to end testing.
+
+   - End-to-end testing is also known as "E2E Testing", and it is a type of software testing that checks the entire software from start to finish, as well as its integration with external interfaces. The goal of E2E testing is to exercise a whole production-like scenario by evaluating the entire software for dependencies, data integrity, and interactions with other systems, interfaces, and databases.
 
 ## Instructions
 
@@ -63,6 +71,7 @@ Your finished project must include all of the following requirements:
 - [ ] An Add to Order button that has an id of "order-button" and that submits form and returns a database record of name, size, toppings and special instructions
 
 Data should look something like
+
 ```
 {
     name: string,
@@ -72,6 +81,7 @@ Data should look something like
     special: string,
 }
 ```
+
 where there is a key for name, size and special and they are strings
 and
 there is a key for each of the toppings and they are booleans
@@ -113,4 +123,5 @@ One of your goals is to return a database record of the order - for this you'll 
 Follow these steps for completing your project.
 
 Set up your fork on Github to codegrade following the instructions [here](https://lambdaschool.instructure.com/courses/1675/assignments/51399?module_item_id=617624), pushing commits to your main branch.
+
 - [ ] Your code will be reviewed over the next few days. Read [these instructions](https://www.notion.so/How-to-View-Feedback-in-CodeGrade-c5147cee220c4044a25de28bcb6bb54a) to learn how to view feedback in CodeGrade.
