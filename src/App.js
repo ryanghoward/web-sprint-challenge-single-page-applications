@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
+import OrderForm from "./components/OrderForm";
 
 const initialFormValues = {
   customerName: "",
@@ -55,9 +56,14 @@ const App = () => {
   return (
     <div className='container'>
       <Header />
-      <Route>
-        <Home />
-      </Route>
+      <Switch>
+        <Route>
+          <Home exact path='/' />
+        </Route>
+        <Route path='/pizza'>
+          <OrderForm formValues={formValues} />
+        </Route>
+      </Switch>
     </div>
   );
 };

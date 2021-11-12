@@ -10,11 +10,11 @@ function Header() {
         <button>Home</button>
       </Link>
       <Link to='/pizza'>
-        <button>Pizza</button>
+        <button>Order</button>
       </Link>
-      <Link to='/cart'>
+      {/* <Link to='/cart'>
         <button>Cart</button>
-      </Link>
+      </Link> */}
     </div>
   );
 }
