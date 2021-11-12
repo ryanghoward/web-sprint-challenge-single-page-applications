@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.errors {
+  color: red;
+}
+
+.home-img {
+  width: 100vw;
+  height: 50px;
+}

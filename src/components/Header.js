@@ -7,13 +7,10 @@ function Header() {
       <h1>Cheesus Crust</h1>
       <p>The power of Crust compels you</p>
       <Link to='/'>
-        <button id='order-pizza'>Home</button>
+        <button>Home</button>
       </Link>
-      <Link to='/pizza'>
-        <button>Order</button>
-      </Link>
-      <Link to='/cart'>
-        <button>Cart</button>
+      <Link id='order-pizza' to='/pizza'>
+        <button>Order Pizza</button>
       </Link>
     </div>
   );

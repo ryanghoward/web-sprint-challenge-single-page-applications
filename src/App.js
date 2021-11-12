@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import * as yup from "yup";
 import formSchema from "./Directory/formSchema";
 import Confirmation from "./Confirmation";
+import "./App.css";
 
 //~ Component Imports
 import Home from "./components/Home";
@@ -36,7 +37,7 @@ function App() {
   const [confirmation, setConfirmation] = useState({});
   const [disabled, setDisabled] = useState(initialDisabled);
 
-  console.log(confirmation);
+  // console.log(confirmation);
 
   const validate = (name, value) => {
     yup
