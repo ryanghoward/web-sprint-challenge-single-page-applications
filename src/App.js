@@ -3,6 +3,8 @@ import { Route, Switch, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import OrderForm from "./components/OrderForm";
+import * as yup from "yup";
+import schema from "./Directory/formSchema";
 
 const initialFormValues = {
   customerName: "",
@@ -35,6 +37,19 @@ const App = () => {
     setFormValues(initialFormValues);
   };
 
+  const validate = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => setFormErrors({ ...formErrors, [name]: "" }))
+      .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
+  };
+
+  const inputChange = (name, value) => {
+    validate(name, value);
+    setFormValues({ ...formValues, [name]: value });
+  };
+
   const formSubmit = () => {
     const newOrder = {
       customerName: formValues.customerName.trim(),
@@ -61,7 +76,13 @@ const App = () => {
           <Home exact path='/' />
         </Route>
         <Route path='/pizza'>
-          <OrderForm formValues={formValues} />
+          <OrderForm
+            values={formValues}
+            change={inputChange}
+            submit={formSubmit}
+            disabled={disabled}
+            errors={formErrors}
+          />
         </Route>
       </Switch>
     </div>
