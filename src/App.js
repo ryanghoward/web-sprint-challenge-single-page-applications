@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import Home from "./components/Home";
+import Header from "./components/Header";
 
 const initialFormValues = {
   customerName: "",
@@ -53,8 +54,7 @@ const App = () => {
 
   return (
     <div className='container'>
-      <h1>Cheesus Crust</h1>
-      <p>The power of Crust compels you</p>
+      <Header />
       <Route>
         <Home />
       </Route>
