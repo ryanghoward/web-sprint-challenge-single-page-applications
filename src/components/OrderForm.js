@@ -129,6 +129,16 @@ const OrderForm = (props) => {
               value={formValues.olives}
             />
           </label>
+          <label>
+            Special
+            <input
+              id='special-text'
+              type='text'
+              name='Special'
+              // onChange={onChange}
+              // value={formValues.olives}
+            />
+          </label>
         </div>
       </div>
     </form>

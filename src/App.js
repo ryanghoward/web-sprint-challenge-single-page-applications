@@ -39,12 +39,14 @@ function App() {
 
   // console.log(confirmation);
 
-  const validate = (name, value) => {
+  const validation = (customerName, value) => {
     yup
-      .reach(formSchema, name)
+      .reach(formSchema, customerName)
       .validate(value)
-      .then(() => setFormErrors({ ...formErrors, [name]: "" }))
-      .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
+      .then(() => setFormErrors({ ...formErrors, [customerName]: "" }))
+      .catch((err) =>
+        setFormErrors({ ...formErrors, [customerName]: err.errors[0] })
+      );
   };
 
   const inputChange = (name, value) => {
