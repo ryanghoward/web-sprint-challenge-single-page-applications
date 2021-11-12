@@ -3,15 +3,15 @@ import { useHistory } from "react-router-dom";
 import pizza from "../Assets/Pizza.jpg";
 
 const OrderForm = (props) => {
-  const { fromValues, updateForm, submitForm, formErrors, formDisabled } =
+  const { formValues, updateForm, submitForm, formErrors, formDisabled } =
     props;
   const history = useHistory();
 
   const onChange = (event) => {
-    const { name, value, checked, type } = event.target;
+    const { customerName, value, checked, type } = event.target;
     const valueToUse = type === "checkbox" ? checked : value;
 
-    updateForm(name, valueToUse);
+    updateForm(customerName, valueToUse);
   };
 
   const onSubmit = (event) => {
@@ -21,7 +21,7 @@ const OrderForm = (props) => {
   };
 
   return (
-    <form id='pizza-form' className='form container' onSubmit={onSubmit}>
+    <form id='pizza-form' className='form-container' onSubmit={onSubmit}>
       <div className='form-group submit'>
         <img className='home-image' src={pizza} alt='Pizza' />
         <h2>Build Your Own 'Za</h2>
@@ -38,7 +38,7 @@ const OrderForm = (props) => {
             id='name-input'
             type='text'
             name='name'
-            value={fromValues.name}
+            value={formValues.name}
             onChange={onChange}
           />
         </label>
@@ -47,7 +47,7 @@ const OrderForm = (props) => {
           <select
             id='size-dropdown'
             name='size'
-            value={fromValues.size}
+            value={formValues.size}
             onChange={onChange}
           >
             <option value=''>Select a Size</option>
@@ -65,7 +65,7 @@ const OrderForm = (props) => {
               type='checkbox'
               name='pepperoni'
               onChange={onChange}
-              checked={fromValues.pepperoni}
+              checked={formValues.pepperoni}
             />
           </label>
           <label>
@@ -74,7 +74,7 @@ const OrderForm = (props) => {
               type='checkbox'
               name='cheese'
               onChange={onChange}
-              checked={fromValues.cheese}
+              checked={formValues.cheese}
             />
           </label>
           <label>
@@ -83,7 +83,7 @@ const OrderForm = (props) => {
               type='checkbox'
               name='sausage'
               onChange={onChange}
-              checked={fromValues.sausage}
+              checked={formValues.sausage}
             />
           </label>
           <label>
@@ -92,7 +92,7 @@ const OrderForm = (props) => {
               type='checkbox'
               name='bacon'
               onChange={onChange}
-              checked={fromValues.bacon}
+              checked={formValues.bacon}
             />
           </label>
           <label>
@@ -101,7 +101,7 @@ const OrderForm = (props) => {
               type='checkbox'
               name='pineapple'
               onChange={onChange}
-              checked={fromValues.pineapple}
+              checked={formValues.pineapple}
             />
           </label>
           <label>
@@ -110,7 +110,7 @@ const OrderForm = (props) => {
               type='checkbox'
               name='onion'
               onChange={onChange}
-              checked={fromValues.onion}
+              checked={formValues.onion}
             />
           </label>
           <label>
@@ -119,7 +119,7 @@ const OrderForm = (props) => {
               type='checkbox'
               name='olives'
               onChange={onChange}
-              checked={fromValues.olives}
+              checked={formValues.olives}
             />
           </label>
         </div>

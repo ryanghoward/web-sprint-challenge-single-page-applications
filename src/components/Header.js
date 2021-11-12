@@ -12,9 +12,9 @@ function Header() {
       <Link to='/pizza'>
         <button>Order</button>
       </Link>
-      {/* <Link to='/cart'>
+      <Link to='/cart'>
         <button>Cart</button>
-      </Link> */}
+      </Link>
     </div>
   );
 }

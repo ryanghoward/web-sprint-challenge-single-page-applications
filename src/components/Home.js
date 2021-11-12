@@ -5,7 +5,12 @@ import pizza from "../Assets/Pizza.jpg";
 function Home() {
   return (
     <div className='home-wrapper'>
-      <img className='home-image' src={pizza} alt='Pizza' />
+      <nav>
+        <img className='home-image' src={pizza} alt='Pizza' />
+        <div className='nav-links'>
+          <Link to='/'>Home</Link>
+        </div>
+      </nav>
       <Link to='/pizza'>
         <button className='order-button'>Place order</button>
       </Link>

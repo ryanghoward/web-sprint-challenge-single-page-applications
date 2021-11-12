@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import * as yup from "yup";
+import formSchema from "./Directory/formSchema";
+import Confirmation from "./Confirmation";
+
+//~ Component Imports
 import Home from "./components/Home";
 import Header from "./components/Header";
 import OrderForm from "./components/OrderForm";
-import * as yup from "yup";
-import schema from "./Directory/formSchema";
+import axios from "axios";
 
 const initialFormValues = {
   customerName: "",
@@ -16,7 +20,7 @@ const initialFormValues = {
   pineapple: false,
   onion: false,
   olives: false,
-  other: "",
+  special: "",
 };
 
 const initialFormErrors = {
@@ -26,20 +30,15 @@ const initialFormErrors = {
 
 const initialDisabled = true;
 
-const App = () => {
+function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-  const [disabled, setDisabled] = useState(initialDisabled);
   const [confirmation, setConfirmation] = useState(initialFormValues);
-
-  const setNewOrder = (newOrder) => {
-    setConfirmation(newOrder);
-    setFormValues(initialFormValues);
-  };
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   const validate = (name, value) => {
     yup
-      .reach(schema, name)
+      .reach(formSchema, name)
       .validate(value)
       .then(() => setFormErrors({ ...formErrors, [name]: "" }))
       .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
@@ -63,29 +62,51 @@ const App = () => {
         "onion",
         "olives",
       ].filter((topping) => !!formValues[topping]),
-      other: formValues.other.trim(),
+      special: formValues.special.trim(),
     };
     setNewOrder(newOrder);
   };
+
+  const setNewOrder = (newOrder) => {
+    setConfirmation(newOrder);
+    // setFormValues(initialFormValues);
+    axios
+      .post(`https://reqres.in/api/orders`, newOrder)
+      .then((res) => {
+        console.log(res.data);
+        setFormValues(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  useEffect(() => {
+    formSchema.isValid(formValues).then((valid) => setDisabled(!valid));
+  }, [formValues]);
 
   return (
     <div className='container'>
       <Header />
       <Switch>
-        <Route>
-          <Home exact path='/' />
+        <Route exact path='/'>
+          <Home />
         </Route>
         <Route path='/pizza'>
           <OrderForm
-            values={formValues}
-            change={inputChange}
-            submit={formSubmit}
+            formValues={formValues}
+            inputChange={inputChange}
+            formSubmit={formSubmit}
             disabled={disabled}
-            errors={formErrors}
+            formErrors={formErrors}
           />
+        </Route>
+        <Route path='/order/confirmation'>
+          <Confirmation details={confirmation} />
         </Route>
       </Switch>
     </div>
   );
-};
+}
+
 export default App;
