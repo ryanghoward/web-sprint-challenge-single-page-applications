@@ -12,7 +12,6 @@ describe("Lambda Eats", () => {
   const pineappleCheck = () => cy.get("input[name=pineapple]");
   const onionCheck = () => cy.get("input[name=onion]");
   const olivesCheck = () => cy.get("input[name=olives]");
-  const specialInput = () => cy.get("input[name=special]");
   const submitBtn = () => cy.get("button[id=order-button]");
 
   it("The proper elements are showing", () => {
@@ -25,15 +24,14 @@ describe("Lambda Eats", () => {
     pineappleCheck().should("exist");
     onionCheck().should("exist");
     olivesCheck().should("exist");
-    specialInput().should("exist");
     submitBtn().should("exist");
   });
 
   it("Can type in input", () => {
     nameInput()
       .should("have.value", "")
-      .type("Vernon")
-      .should("have.value", "Vernon");
+      .type("Ryan")
+      .should("have.value", "Ryan");
   });
 
   it("Can check multiple toppings", () => {
@@ -48,8 +46,8 @@ describe("Lambda Eats", () => {
   it("Can submit order form", () => {
     nameInput()
       .should("have.value", "")
-      .type("Vernon")
-      .should("have.value", "Vernon");
+      .type("Ryan")
+      .should("have.value", "Ryan");
     submitBtn().click();
   });
 });
