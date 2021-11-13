@@ -30,7 +30,6 @@ const OrderForm = (props) => {
   return (
     <form id='pizza-form' className='form-container' onSubmit={onSubmit}>
       <div className='form-group submit'>
-        <img className='home-image' src={pizza} alt='Pizza' />
         <h2>Whatchyu want on yo Pizza bruh?</h2>
         <div className='errors'>
           <div>{formErrors.name}</div>
@@ -135,6 +134,7 @@ const OrderForm = (props) => {
       <button onClick={onClick} id='order-button' disabled={formDisabled}>
         Submit
       </button>
+      <img className='home-image' src={pizza} alt='Pizza' />
     </form>
   );
 };
