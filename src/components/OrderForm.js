@@ -22,8 +22,8 @@ const OrderForm = (props) => {
     console.log(confirmation);
   };
 
-  const onSubmit = (evt) => {
-    evt.preventDefault();
+  const onSubmit = (event) => {
+    event.preventDefault();
     formSubmit();
   };
 
